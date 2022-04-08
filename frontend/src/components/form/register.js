@@ -3,17 +3,18 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import { Button, Form } from 'react-bootstrap'
 
 
-import useForm from "../../hook/useForm";
+import useForm from "../../hook/useForm"
 
 export default function Register() {
-    const { handleChange, values, handleSubmit} = useForm();
+    const { handleChange, values, handleSubmit} = useForm()
 
 
     return (
-        <div className="text-center d-flex justify-content-center align-items-center w-100 h-100">
-            <Form action="" className="container" onSubmit={handleSubmit}>
+        <div className="text-center d-flex flex-column justify-content-center align-items-center w-100 h-100">
+            <h1>S'inscrire :</h1>
+            <Form action="" className="container w-50" onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Label>Email address</Form.Label>
+                    <Form.Label>Nom d'utilisateur</Form.Label>
                     <Form.Control
                         type="text"
                         name="username"
@@ -22,7 +23,7 @@ export default function Register() {
                         onChange={handleChange} />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicPassword">
-                    <Form.Label>Password</Form.Label>
+                    <Form.Label>Mot de passe</Form.Label>
                     <Form.Control
                         type="password"
                         name="password"
@@ -35,5 +36,6 @@ export default function Register() {
                 </Button>
             </Form>
         </div>
-    );
+
+    )
 }

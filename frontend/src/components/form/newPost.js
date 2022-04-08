@@ -5,5 +5,5 @@ export default function NewPost() {
         <div className="Register">
 
         </div>
-    );
+    )
 }

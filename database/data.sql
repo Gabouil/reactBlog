@@ -53,16 +53,17 @@ INSERT INTO `post` (`idPost`, `title`, `content`, `idUser`) VALUES
 CREATE TABLE `user` (
   `id` int(11) NOT NULL,
   `username` varchar(255) NOT NULL,
-  `password` varchar(11) NOT NULL
+  `password` varchar(11) NOT NULL,
+  `token` char(50) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `user`
 --
 
-INSERT INTO `user` (`id`, `username`, `password`) VALUES
-(1, 'gabriel', 'admin'),
-(2, 'jf', '20CarTesLeMeillieuProf');
+INSERT INTO `user` (`id`, `username`, `password`, `token`) VALUES
+(1, 'gabriel', 'admin', '931000'),
+(2, 'jf', '20CarTesLeMeillieuProf', '931001');
 
 --
 -- Index pour les tables déchargées
