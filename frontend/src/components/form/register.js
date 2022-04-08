@@ -1,12 +1,41 @@
-import react from 'react'
+import { useState } from "react"
+
+
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Button, Form } from 'react-bootstrap'
+import data from "bootstrap/js/src/dom/data";
 
-
-import useForm from "../../hook/useForm"
 
 export default function Register() {
-    const { handleChange, values, handleSubmit} = useForm()
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [credentials, setCredentials] = useState({
+        usernameData : username,
+        passwordData : password
+    })
+
+
+    const handleSubmit = async(e) => {
+        e.preventDefault()
+        const data = {
+            usernameData: username,
+            passwordData: password
+        }
+
+        console.log(data)
+        await fetch("http://localhost:5555/createUser.php", {
+            // crossDomain: true,
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Authorization': `Basic ${btoa(`${data.usernameData}:${data.passwordData}`)}`
+            },
+            body: JSON.stringify(data)
+        })
+            .then(response => response.json())
+            .then(responseJSON => console.log(responseJSON))
+    }
 
 
     return (
@@ -19,8 +48,7 @@ export default function Register() {
                         type="text"
                         name="username"
                         className="form-control"
-                        value={values.username}
-                        onChange={handleChange} />
+                        onChange={(e) => {setUsername(e.target.value)}} />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Mot de passe</Form.Label>
@@ -28,10 +56,9 @@ export default function Register() {
                         type="password"
                         name="password"
                         className="form-control"
-                        value={values.password}
-                        onChange={handleChange} />
+                        onChange={(e) => {setPassword(e.target.value)}} />
                 </Form.Group>
-                <Button variant="primary" type="submit">
+                <Button variant="primary" type="submit" onClick={(e) => {handleSubmit(e)}}>
                     Inscription
                 </Button>
             </Form>
