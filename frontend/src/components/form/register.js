@@ -7,22 +7,16 @@ import data from "bootstrap/js/src/dom/data";
 
 
 export default function Register() {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-    const [credentials, setCredentials] = useState({
-        usernameData : username,
-        passwordData : password
-    })
+    const [username, setUsername] = useState('')
+    const [password, setPassword] = useState('')
 
 
-    const handleSubmit = async(e) => {
+    const submit = async(e) => {
         e.preventDefault()
         const data = {
             usernameData: username,
             passwordData: password
         }
-
-        console.log(data)
         await fetch("http://localhost:5555/createUser.php", {
             // crossDomain: true,
             method: 'POST',
@@ -41,8 +35,8 @@ export default function Register() {
     return (
         <div className="text-center d-flex flex-column justify-content-center align-items-center w-100 h-100">
             <h1>S'inscrire :</h1>
-            <Form action="" className="container w-50" onSubmit={handleSubmit}>
-                <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form action="" className="container w-50" onSubmit={submit}>
+                <Form.Group className="mb-3" controlId="RegisterName">
                     <Form.Label>Nom d'utilisateur</Form.Label>
                     <Form.Control
                         type="text"
@@ -50,7 +44,7 @@ export default function Register() {
                         className="form-control"
                         onChange={(e) => {setUsername(e.target.value)}} />
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicPassword">
+                <Form.Group className="mb-3" controlId="RegisterMDP">
                     <Form.Label>Mot de passe</Form.Label>
                     <Form.Control
                         type="password"
@@ -58,7 +52,7 @@ export default function Register() {
                         className="form-control"
                         onChange={(e) => {setPassword(e.target.value)}} />
                 </Form.Group>
-                <Button variant="primary" type="submit" onClick={(e) => {handleSubmit(e)}}>
+                <Button variant="primary" type="submit" onClick={(e) => {submit(e)}}>
                     Inscription
                 </Button>
             </Form>

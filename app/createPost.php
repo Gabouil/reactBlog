@@ -1,10 +1,18 @@
 <?php
 
 require './login.php';
-$addpost = "INSERT INTO `post` (`idPost`, `title`, `content`, `idUser`) VALUES (NULL, 'titre', 'content', 1);";
+require './cors.php';
 
-// try {
-//     mysqli_query($conn, $addpost);
-// } catch (\Exception $e){
-//     die('MySQL Error : ' . $e->getMessage());
-// }
+$title = $_SERVER[''];
+$content = $_SERVER[''];
+$idUser = $_SERVER[''];
+
+$addpost = "INSERT INTO `post` (`idPost`, `title`, `content`, `idUser`) VALUES (NULL, {$title}; {$content}, {$idUser});";
+
+if ($_SERVER[''] != "" && $_SERVER[''] != "") {
+    try {
+        mysqli_query($conn, $addpost);
+    } catch (\Exception $e){
+        die('MySQL Error : ' . $e->getMessage());
+    }
+}

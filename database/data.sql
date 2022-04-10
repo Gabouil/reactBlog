@@ -62,8 +62,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `username`, `password`, `token`) VALUES
-(1, 'gabriel', 'admin', '931000'),
-(2, 'jf', '20CarTesLeMeillieuProf', '931001');
+(1, 'gabriel', 'admin', 'f717adfb4842b8baff42f0c0a5ed4568b7c8f7d04b43b71704'),
+(2, 'jf', '20CarTesLeMeillieuProf', 'ef46eb351d9a16b58504ab696969c4c435680829948bf26d3a');
 
 --
 -- Index pour les tables déchargées
