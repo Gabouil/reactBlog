@@ -6,7 +6,7 @@ import { Button, Form } from 'react-bootstrap'
 import Post from "../content/post";
 
 
-export default function Register({setIsLogin, setUsername, setUserId}) {
+export default function Register({setIsLogin, setUsername, setUserId, setErrorLogin}) {
     const [inputPassword, setInputPassword] = useState(null)
     const [inputUsername, setInputUsername] = useState(null)
     const [users, setUsers] = useState(null)
@@ -28,18 +28,20 @@ export default function Register({setIsLogin, setUsername, setUserId}) {
             })
             .catch(error => {
                 setUsers({ errorMessage: error.toString() });
-                console.error('Il y a eu une erreur ', error);
+                console.error('Il y a eu une erreur', error);
             })
     }
     const login = async(e) => {
         e.preventDefault()
+        setErrorLogin(false)
         users.map((user, i) => {
            if(user.username === inputUsername && user.password === inputPassword){
                setIsLogin(true)
                setUsername(user.username)
                setUserId(user.id)
+           } else {
+               setErrorLogin(true)
            }
-
         })
     }
 
@@ -63,7 +65,7 @@ export default function Register({setIsLogin, setUsername, setUserId}) {
                         className="form-control"
                         onChange={(e) => {setInputPassword(e.target.value)}} />
                 </Form.Group>
-                <Button variant="primary" type="submit" onClick={(e) => {login(e)}}>
+                <Button variant="primary" type="submit" onClick={(e) => {userList() && login(e)}}>
                     connection
                 </Button>
             </Form></div>

@@ -10,8 +10,11 @@ import Posts from "./components/content/posts";
 export default function App() {
     const [connexion, setConnexion] = useState(false)
     const [isLogin, setIsLogin] = useState(false)
+    const [errorLogin, setErrorLogin] = useState(false)
     const [username, setUsername] = useState(null)
     const [userId, setUserId] = useState(null)
+
+
     return (
       <div className="App">
           <section className={isLogin ? 'd-none' : 'd-block mb-5'}>
@@ -25,19 +28,24 @@ export default function App() {
                   <Register />
               </div>
               <div className={connexion ? 'd-block' : 'd-none'}>
-                  <Login setIsLogin={setIsLogin} setUsername={setUsername} setUserId={setUserId} />
+                  <Login setIsLogin={setIsLogin} setUsername={setUsername} setUserId={setUserId} setErrorLogin={setErrorLogin} />
+                  <div className={errorLogin? "alert-danger w-100 text-center mt-2" : "d-none"}>Il y a une faute dans le nom d'utilisateur ou le mot de passe.</div>
               </div>
           </section>
+
           <section className={isLogin ? 'd-block mb-5' : 'd-none'}>
               <h2>Bienvenu {username} !</h2>
-              <button className={'btn mb-4 btn-danger'} onClick={() => setIsLogin(false) & setUsername(null) & setUserId(null)}>déconnexion</button>
+              <button className={'btn mb-4 btn-danger'} onClick={() => setIsLogin(false) & setUsername(null) & setUserId(null) & setErrorLogin(false)}>déconnexion</button>
           </section>
-          <div className={isLogin ? 'd-block mb-5' : 'd-none'}>
-              <NewPost />
-          </div>
-          <div className={"mt-5"}>
-              <Posts />
-          </div>
+
+          <section>
+              <div className={isLogin ? 'd-block mb-5' : 'd-none'}>
+                  <NewPost userId={userId} />
+              </div>
+              <div className={"mt-5"}>
+                  <Posts />
+              </div>
+          </section>
       </div>
     )
 }

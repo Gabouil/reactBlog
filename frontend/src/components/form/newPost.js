@@ -1,9 +1,31 @@
 import react, {useState} from 'react'
 import {Button, Form} from "react-bootstrap";
 
-export default function NewPost() {
+export default function NewPost({userId}) {
     const [title, setTitle] = useState('')
     const [content, setContent] = useState('')
+
+
+    const submit = async(e) => {
+        e.preventDefault()
+        const data = {
+            titleData: title,
+            contentData: content,
+            userIdData: userId
+        }
+        await fetch("http://localhost:5555/createPost.php", {
+            // crossDomain: true,
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: JSON.stringify(data)
+        })
+            .then(response => response.json())
+            .then(responseJSON => console.log(responseJSON))
+    }
+
     return (
         <div className="text-center d-flex flex-column justify-content-center align-items-center w-100 h-100">
             <h1>Nouveau post :</h1>
@@ -24,7 +46,7 @@ export default function NewPost() {
                         className="form-control"
                         onChange={(e) => {setContent(e.target.value)}} />
                 </Form.Group>
-                <Button variant="primary" type="submit">
+                <Button variant="primary" type="submit" onClick={(e) => submit(e)}>
                     Publier
                 </Button>
             </Form>
