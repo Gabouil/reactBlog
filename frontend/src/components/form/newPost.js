@@ -13,12 +13,12 @@ export default function NewPost({userId}) {
             contentData: content,
             userIdData: userId
         }
+        console.log(JSON.stringify(data))
         await fetch("http://localhost:5555/createPost.php", {
             // crossDomain: true,
-            method: 'POST',
-            mode: 'cors',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
+            method: 'POST',headers : {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
             },
             body: JSON.stringify(data)
         })
