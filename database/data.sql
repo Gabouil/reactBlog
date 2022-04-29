@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : db
--- Généré le : ven. 08 avr. 2022 à 13:16
+-- Généré le : mer. 06 avr. 2022 à 17:36
 -- Version du serveur : 10.6.5-MariaDB-1:10.6.5+maria~focal
--- Version de PHP : 8.0.16
+-- Version de PHP : 8.0.15
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,68 +18,59 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `exampledb`
+-- Base de données : `data`
 --
+CREATE DATABASE IF NOT EXISTS `data` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `data`;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `post`
+-- Structure de la table `Blog`
 --
 
-CREATE TABLE `post` (
+CREATE TABLE `Blog` (
   `id` int(11) NOT NULL,
+  `authorId` int(11) NOT NULL,
+  `date` datetime NOT NULL,
   `title` varchar(255) NOT NULL,
-  `content` varchar(255) NOT NULL,
-  `idUser` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Déchargement des données de la table `post`
---
-
-INSERT INTO `post` (`id`, `title`, `content`, `idUser`) VALUES
-(1, 'titre', 'super contenu', 1),
-(2, 'titre 2', 'super contenu 2', 2),
-(3, 'En vrai je peux bien avoir un 20 ?', 'Un petit 20 ça fait pas de mal non ?', 2),
-(4, 'Lorem', 'Lerem ipsune', 1);
+  `content` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `user`
+-- Structure de la table `User`
 --
 
-CREATE TABLE `user` (
-  `id` INT NOT NULL ,
+CREATE TABLE `User` (
+  `id` int(11) NOT NULL,
   `username` varchar(255) NOT NULL,
-  `password` varchar(11) NOT NULL,
-  `token` char(50) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `password` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Déchargement des données de la table `user`
+-- Déchargement des données de la table `User`
 --
 
-INSERT INTO `user` (`id`, `username`, `password`, `token`) VALUES
-(1, 'gabriel', 'admin', 'f717adfb4842b8baff42f0c0a5ed4568b7c8f7d04b43b71704'),
-(2, 'jf', '20CarTesLeMeillieuProf', 'ef46eb351d9a16b58504ab696969c4c435680829948bf26d3a');
+INSERT INTO `User` (`id`, `username`, `password`) VALUES
+(1, 'FrancisHuster', '$2y$10$kgElSKkY9xgITrnfaAZLAee.5/JgHL9aRM3iZg27ShpOBsRA.h.Z.'),
+(2, 'JohnBob', '$2y$10$4/1Iqkb/mbMB4wr9YOnkfegeRKszIPiSzVJ2Ik4G5kDPyjgsgQrI2');
 
 --
 -- Index pour les tables déchargées
 --
 
 --
--- Index pour la table `post`
+-- Index pour la table `Blog`
 --
-ALTER TABLE `post`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id` (`id`);
+ALTER TABLE `Blog`
+  ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `user`
+-- Index pour la table `User`
 --
-ALTER TABLE `user`
+ALTER TABLE `User`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -87,21 +78,18 @@ ALTER TABLE `user`
 --
 
 --
--- AUTO_INCREMENT pour la table `post`
+-- AUTO_INCREMENT pour la table `Blog`
 --
-ALTER TABLE `post`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+ALTER TABLE `Blog`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT pour la table `user`
+-- AUTO_INCREMENT pour la table `User`
 --
-ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+ALTER TABLE `User`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
--- AUTO_INCREMENT pour la table `user`
---
