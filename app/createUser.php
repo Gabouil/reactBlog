@@ -1,14 +1,16 @@
 <?php
+require './cors-auth.php';
+require './connexion.php';
 
-require './login.php';
-require './cors.php';
+try {
+    $token = strval(bin2hex(random_bytes(25)));
+} catch (Exception $e) {
+}
 
 $username = $_SERVER['PHP_AUTH_USER'];
-$password = $_SERVER['PHP_AUTH_PW'];
+$passwd = $_SERVER['PHP_AUTH_PW'];
 
-$token = strval(bin2hex(random_bytes(25)));
-$adduser = "INSERT INTO `user` (`id`, `username`, `password`, `token`) VALUES (NULL , '{$username}' , '{$password}', '{$token}');";
-
+$adduser = "INSERT INTO `user` (`idUser`, `username`, `password`, `token`) VALUES (NULL, '{$username}', '{$passwd}', '{$token}' );";
 if ($_SERVER['PHP_AUTH_USER'] != "" && $_SERVER['PHP_AUTH_PW'] != "") {
     try {
         mysqli_query($db, $adduser);

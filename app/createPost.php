@@ -1,19 +1,12 @@
 <?php
+require './cors-auth.php';
+require './connexion.php';
 
-require './login.php';
-require './cors.php';
+$addpost = "INSERT INTO `post` (`idPost`, `title`, `content`, `idUser`) VALUES (NULL, 'hello', 'ieijeijegijgijgigje', 3);";
 
-$title = $_POST['titleData'];
-$content = $_POST['contentData'];
-$idUser = $_POST['userIdData'];
-
-$addpost = "INSERT INTO `post` (`idPost`, `title`, `content`, `idUser`) VALUES (NULL, {$title}; {$content}, {$idUser});";
-
-
-if ($_POST['titleData'] != "" && $_POST['contentData'] != "" && $_POST['userIdData'] != "") {
-    try {
-        mysqli_query($db, $addpost);
-    } catch (\Exception $e){
-        die('MySQL Error : ' . $e->getMessage());
-    }
-}
+echo $_POST;
+// try {
+//     mysqli_query($db, $addpost);
+// } catch (\Exception $e){
+//     die('MySQL Error : ' . $e->getMessage());
+// }

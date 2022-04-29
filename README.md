@@ -1,13 +1,7 @@
-# Un petit Blog OnePage React PHP
+# Coucou, bienvenue sur le Readme de FetchApp
 
-Backend PHP Docker, donc pour faire tourner tout ça :
-````shell
-docker-compose up -d &&
-cd ./frontend &&
-yarn &&
-yarn dev
-````
+Pour pouvoir lancer le projet et profiter pleinement de cette magnifique app',
+il faut lancer les 2 commandes suivantes :
 
-Vous pouvez créer vos propres identifiants, mais de base : 
-- FrancisHuster : password
-- JohnBob : password
+### `docker-compose up`
+### `npm start`

@@ -1,16 +1,17 @@
 <?php
+require './cors-auth.php';
+require './connexion.php';
 
-require './login.php';
-require './cors.php';
-
-$getallUser = 'SELECT id, username, password, token FROM user;';
+$getuser = "SELECT * FROM `user`";
+$userList = [];
 
 try {
-    $query = mysqli_query($db, $getallUser);
+    $query = mysqli_query($db, $getuser);
 
     while($row = mysqli_fetch_array($query)) {
         $userList[] = $row;
     }
+
     echo json_encode($userList);
 
 } catch(\Exception $e) {
